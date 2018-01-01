@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Product Information</title>
+  </head>
+  <body>
+    <h1>Product added by: {{ productInfo.items.all.first.first_name }}</h1>
+    <h2>Product name: {{ productInfo.name }}</h2>
+    <h2>Date added: {{ productInfo.created_at }}</h2>
+    <h2>Product ID: {{ productInfo.id }}</h2>
+    <a href="/wish">Go Back</a>
+  </body>
+</html>

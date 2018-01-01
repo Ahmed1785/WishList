@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Wishlist</title>
+  </head>
+  <body>
+    <h1>{{ cur_user.first_name }}</h1>
+    <h2>Wish List:</h2>
+    <div class="userWishlist">
+      <table>
+        <tr>
+          <th>Product:</th>
+          <th>Added by:</th>
+          <th>Date Added:</th>
+          <th>Actions:</th>
+        </tr>
+        {% for product in user_wishlist %}
+        <tr>
+          <td><a href="/wish/show/{{ product.id }}">{{ product.name }}</a></td>
+          <td><a href="/wish/userPage" class="element--hover">{{ product.items.all.first.first_name }}</td></a>
+          <td>{{ product.created_at }}</td>
+          <td><a href="/wish/remove/{{ product.id }}">Remove from wishlist</a> | <a href="/wish/delete/{{ product.id }}">Delete Item</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="allProducts">
+      <h2>Other User's Wish List:</h2>
+      <table>
+        <tr>
+          <th>Product:</th>
+          <th>Added by:</th>
+          <th>Date Added:</th>
+          <th>Actions:</th>
+        </tr>
+      {% for product in products %}
+      <tr>
+        <td><a href="/wish/show/{{ product.id }}">{{ product.name }}</a></td>
+        <td><a href="/wish/userPage" class="element--hover">{{ product.items.all.first.first_name }}</td></a>
+        <td>{{ product.created_at }}</td>
+        <td><a href="/wish/addProduct/{{ product.id }}">Add to wishlist</a> | <a href="/wish/delete/{{ product.id }}">Delete Item</a></td>
+      </tr>
+      {% endfor %}
+      </table>
+    </div>
+      <a href="/wish/add">Add Product</a> | <a href="/logout">Logout</a><br>
+      <a href="/wish/api">API</a>
+
+  </body>
+  <style media="screen">
+    table{
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td, th{
+        border: 1px solid #000000;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even){
+        background-color: #377FBF;
+      }
+      tr:nth-child(odd){
+        background-color: #a20000
+      }
+      .userWishlist{
+        height: 300px;
+        width: 100%;
+        border: solid black 1px;
+        overflow: scroll;
+      }
+      .allProducts{
+        height: 300px;
+        width: 100%;
+        border: solid black 1px;
+        overflow: scroll;
+      }
+      /*//Trying something new below*/
+      .element--hover {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 1.0rem;
+          text-transform: uppercase;
+          color: #000;
+          background-color: #377FBF;
+          padding: .5rem 1rem;
+          border-radius: 2rem;
+        }
+
+      .element--hover {
+          cursor: pointer;
+          transition: box-shadow 600ms cubic-bezier(0.33, 0.11, 0.02, 0.99), transform 600ms cubic-bezier(0.33, 0.11, 0.02, 0.99);
+        }
+      .element--hover:hover {
+          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.05), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1), 8px 32px 32px rgba(0, 0, 0, 0.15), 8px 64px 64px rgba(0, 0, 0, 0.15);
+          transform: scale(1.05) translateY(-0.5rem);
+        }
+      .element--hover:active {
+          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.05), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1), 8px 16px 16px rgba(0, 0, 0, 0.15), 8px 32px 32px rgba(0, 0, 0, 0.15);
+        }
+  </style>
+</html>
